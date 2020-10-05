@@ -1,0 +1,82 @@
+@use 'sass:color' as color;
+@use 'variables' as *;
+@use 'LinearLayout' as *;
+
+@mixin view-scroller {
+	// needed to be relative position to layout children
+    @include linear-layout;
+
+    flex-grow: 1;
+	flex-shrink: 1; // lets the viewport size limited to its parent
+	flex-direction: column !important; // needed as block boxes basically stretch their width to the parents'
+}
+@mixin scroll-layout {
+	// needed to be relative position for getting offsetTop of children to this view
+    @include linear-layout;
+
+	height: 100%;
+
+    flex-shrink: 1; // lets the viewport size limited to its parent
+
+	background-color: $background-shaded-color;
+}
+@mixin scroller-track {
+	@include linear-layout;
+
+	position: absolute;
+	z-index: 2;
+	right: 0;
+	bottom: 0;
+
+	align-items: center;
+	$thumb-width: $track-width / 3;
+	$track-padding: $track-width / 2;
+	&:not([orientation=x]) {
+		top: 0;
+		left: calc(100% - #{$track-width});
+
+		padding-top: $track-padding;
+		padding-bottom: $track-padding;
+
+		> * {
+			width: $thumb-width;
+		}
+		&:hover > * {
+			width: $track-width;
+		}
+	}
+	&[orientation=x] {
+		top: calc(100% - #{$track-width});
+		left: 0;
+
+		padding-left: $track-padding;
+		padding-right: $track-padding;
+
+		> * {
+			height: $thumb-width;
+		}
+		&:hover > * {
+			height: $track-width;
+		}
+	}
+}
+@mixin scroller-thumb {
+	@include linear-layout;
+	@include button;
+
+	position: absolute;
+	border-radius: $border-radius;
+	background-color: rgba($color, $thumb-alpha);
+	background-clip: content-box;
+	$coord-td: $transition-duration / 6;
+	transition: width $transition-duration, left $coord-td, right $coord-td, height $transition-duration, top $coord-td, bottom $coord-td;
+}
+view-scroller {
+	@include view-scroller;
+}
+scroller-track {
+	@include scroller-track;
+}
+scroller-thumb {
+	@include scroller-thumb;
+}

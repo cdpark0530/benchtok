@@ -1,0 +1,19 @@
+{
+	"dartsass.disableCompileOnSave": true,
+	"dartsass.disableMinifiedFileGeneration": true,
+	"dartsass.disableSourceMap": true,
+	"dartsass.sassBinPath": "frontend/node_modules/sass/sass.js",
+	"git.ignoreLimitWarning": true,
+	"java.configuration.updateBuildConfiguration": "automatic",
+	"java.format.settings.profile": "Phi",
+	"java.format.settings.url": "phi-java-format-settings.xml",
+	"html.format.wrapLineLength": 150,
+	"typescript.tsdk": "frontend/node_modules/typescript/lib",
+	"vetur.validation.template": false,
+	// "eslint.workingDirectories": [
+	// 	{
+	// 		"directory": "frontend",
+	// 		"changeProcessCWD": true
+	// 	}
+	// ],
+}

@@ -1,0 +1,78 @@
+@use 'sass:color' as color;
+
+@function hex2rgb($hex) {
+    @return "#{color.red($hex), #{color.green($hex)}, #{color.blue($hex)}}"
+};
+
+$prefix: "phi-" !default;
+
+$font-size: 16px !default;
+$line-height: 1.5 !default;
+
+$widget-font-size: 1.5rem !default;
+// $widget-line-height is for the virtual height of widgets to be the line-box height of a single line text
+$widget-line-height: 2 !default;
+
+$icon-size: 1em !default;
+$icon-vertical-align: -.125em !default;
+
+$border-radius: .5rem !default;
+$gutter-width: 1em !default;
+$li-margin: $widget-font-size * 0.15 !default;
+
+$track-width: $li-margin * 3 !default;
+
+$app-color: hsl(0, 0, 0) !default;
+$color: hsl(0, 0, 15%) !default;
+$disable-scale: -25% !default;
+$icon-toggle-scale: 30% !default;
+
+$background-color: hsl(0, 0, 100%) !default;
+$background-shaded-color: hsl(220, 23%, 95%) !default;
+$divider: color.scale($background-color, $lightness: -12%) !default;
+
+$hover-alpha: .1 !default;
+$thumb-alpha: 0.35 !default;
+$overlay-alpha: .5 !default;
+
+$success: hsl(122, 39, 49) !default;
+$failure: hsl(4, 90, 58) !default;
+$hyperlink: hsl(200, 97, 45) !default;
+
+
+$transition-duration: .3s;
+
+
+$grid-max: 10;
+$screen-threshold: (
+    "a": 0px,
+    "s": 500px,
+    "m": 750px,
+    "l": 1000px
+) !default;
+
+$z-indices: (
+    "overlay": 500,
+    "modal": 1000
+) !default;
+
+@mixin button {
+	position: relative;
+	&::before {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		transition: background-color $transition-duration;
+		content: "";
+	}
+	&:hover, &:focus {
+		&::before {
+			background-color: rgba($color, $hover-alpha);
+		}
+	}
+	&:disabled {
+		color: color.scale($color, $lightness: $disable-scale);
+	}
+}

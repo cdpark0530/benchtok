@@ -1,0 +1,51 @@
+spring:
+    profiles:
+        active: dev
+
+---
+
+spring:
+    profiles: dev
+    jpa:
+        open-in-view: true
+        show-sql: true
+        properties:
+            hibernate:
+                # Timezone setting (https://www.baeldung.com/mysql-jdbc-timezone-spring-boot)
+                jdbc.time_zone: UTC
+                # https://github.com/jojoldu/freelec-springboot2-webservice/issues/67#issuecomment-566523952
+                dialect: org.hibernate.dialect.MySQL5Dialect
+    h2:
+        console:
+            enabled: true
+    datasource:
+        initialization-mode: always
+        hikari:
+            jdbc-url: jdbc:h2:mem://localhost/~/testdb;MODE=MYSQL
+    devtools:
+        livereload:
+            enabled: true
+    freemarker:
+        cache: false
+
+---
+
+spring:
+    profiles: local
+    jpa:
+        open-in-view: true
+        show-sql: true
+        properties:
+            hibernate:
+                # Timezone setting (https://www.baeldung.com/mysql-jdbc-timezone-spring-boot)
+                jdbc.time_zone: UTC
+                # https://github.com/jojoldu/freelec-springboot2-webservice/issues/67#issuecomment-566523952
+                dialect: org.hibernate.dialect.MySQL5Dialect
+    h2:
+        console:
+            enabled: true
+    datasource:
+        initialization-mode: always
+        hikari:
+            jdbc-url: jdbc:h2:mem://localhost/~/testdb;MODE=MYSQL
+        url: jdbc:mysql://localhost:3306/test?serverTimezone=UTC&useLegacyDatetimeCode=false

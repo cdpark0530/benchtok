@@ -1,0 +1,24 @@
+{
+	// Use IntelliSense to learn about possible attributes.
+	// Hover to view descriptions of existing attributes.
+	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "java",
+			"name": "java launch",
+			"request": "launch",
+			"mainClass": "com.benchtok.benchtok.Application",
+			"projectName": "benchtok"
+		},
+		{
+			"type": "pwa-chrome",
+			"name": "Attach Chrome",
+			"port": 9222,
+			"request": "attach",
+			"urlFilter": "localhost:3000",
+			"webRoot": "${workspaceFolder}/frontend",
+			"sourceMaps": true
+		},
+	]
+}

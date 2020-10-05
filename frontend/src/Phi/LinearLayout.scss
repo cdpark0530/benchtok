@@ -1,0 +1,24 @@
+@use 'sass:color' as color;
+@use 'variables' as *;
+
+@mixin linear-layout {
+	position: relative;
+    display: flex;
+	flex-shrink: 0;
+	&:not([orientation=x]) {
+		flex-direction: column;
+	}
+    &[orientation=x] {
+		flex-direction: row;
+	}
+	&[position=abs] {
+		position: absolute;
+	}
+	&[position=fixed] {
+		position: fixed;
+	}
+	user-select: none;
+}
+linear-layout {
+    @include linear-layout;
+}

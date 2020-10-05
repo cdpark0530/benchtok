@@ -1,0 +1,37 @@
+@use 'sass:color' as color;
+@use 'variables' as *;
+
+$icon-stroke-width: .25em !default;
+
+svg.icon {
+    width: $icon-size;
+    height: $icon-size;
+    vertical-align: $icon-vertical-align;
+
+    fill: currentColor;
+    stroke: currentColor;
+    stroke-width: $icon-stroke-width;
+    stroke-linejoin: round;
+
+    transition: fill $transition-duration, stroke $transition-duration, transform $transition-duration;
+
+    &.toggle {
+        color: color.scale($color, $lightness: $icon-toggle-scale);
+        fill: none;
+
+        --icon-inline-opacity: 0; // for the inner part of radio button and checkbox
+
+        button.active & {
+            color: $app-color;
+            fill: currentColor;
+
+            --icon-inline: var(--background-color);
+
+            --icon-inline-opacity: 1;
+        }
+    }
+    &.rotate90 {
+        transform: rotate(90deg);
+        transform-origin: 50% 50%;
+    }
+}

@@ -1,0 +1,58 @@
+plugins {
+	id 'org.springframework.boot' version '2.3.1.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+	id 'io.freefair.lombok' version '5.1.0'
+	id "com.github.node-gradle.node" version "2.2.4"
+}
+
+group = 'com.benchtok'
+version = '0.0.1'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	jcenter();
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'com.h2database:h2'
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+	implementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+}
+
+test {
+	useJUnitPlatform()
+}
+
+def frontendDir = "${projectDir}/frontend"
+
+node {
+	nodeModulesDir = file(frontendDir) // nodeModulesDir will be changed to nodeProjectDir in 3+ version
+}
+
+task npmInstallFrontend(type: NpmTask) {
+	args = ["install"]
+}
+
+task npmBuildFrontend(type: NpmTask, dependsOn: "npmInstallFrontend") {
+	args = ["run", "build"]
+}
+
+task copyFrontendBackend(type: Copy, dependsOn: "npmBuildFrontend") {
+	from "${frontendDir}/build"
+	into "${projectDir}/build/resources/main/static"
+}
+
+build.dependsOn copyFrontendBackend

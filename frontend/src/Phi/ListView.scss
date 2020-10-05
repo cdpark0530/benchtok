@@ -1,0 +1,11 @@
+@use 'sass:color' as color;
+@use 'variables' as *;
+@use 'ViewScroller' as *;
+
+@mixin list-view {
+    // needed to be relative position for getting offsetTop of children to this view
+    @include scroll-layout;
+}
+list-view {
+    @include list-view;
+}

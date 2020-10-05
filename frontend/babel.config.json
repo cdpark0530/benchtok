@@ -1,0 +1,23 @@
+{
+	"presets": [
+		[
+			"@babel/preset-env",
+			{
+				"useBuiltIns": "entry",
+				"corejs": "3",
+				"targets": {
+					"browsers": [
+						">5%",
+						"not ie 11",
+						"not op_mini all"
+					]
+				}
+			}
+		],
+		"@babel/preset-react"
+	],
+	"plugins": [
+		"@babel/plugin-syntax-dynamic-import",
+		"@babel/plugin-transform-modules-commonjs"
+	]
+}

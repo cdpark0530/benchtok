@@ -1,0 +1,33 @@
+{
+	"compilerOptions": {
+		"watch": true,
+		"module": "commonjs", // for webpack, ts-node does not support any module syntax other than commonjs.
+		"allowSyntheticDefaultImports": true, // for webpack
+		"esModuleInterop": true, // for webpack
+		"isolatedModules": true,
+		"moduleResolution": "node", // for webpack.config about @types
+		"target": "es6",
+		"jsx": "react",
+		"baseUrl": ".",
+		"paths": {
+			"*": [
+				"src/Phi/*"
+			],
+			"Components/*": [
+				"src/Components/*"
+			]
+		},
+		"strict": true,
+		"alwaysStrict": false,
+		"noImplicitUseStrict": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		"forceConsistentCasingInFileNames": true,
+		"experimentalDecorators": true,
+		"sourceMap": true,
+	},
+	"include": [
+		"./src/**/*",
+		"webpack.config.ts"
+	]
+}

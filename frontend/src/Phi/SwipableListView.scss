@@ -1,0 +1,28 @@
+@use 'sass:color' as color;
+@use 'variables' as *;
+@use 'ListView' as *;
+
+@mixin swipable-list-view {
+	@include list-view;
+
+	> * {
+		// needed to be relative position for swiping, assumes children have non static position
+		z-index: 1;
+		background-color: $background-color;
+		&.smooth {
+			transition: left $transition-duration, top $transition-duration;
+		}
+	}
+}
+swipable-list-view {
+    @include swipable-list-view;
+}
+[swiping-position] {
+	position: absolute;
+}
+swipable-list-view[orientation=x] ~ [swiping-position=end] {
+	bottom: 0;
+}
+swipable-list-view:not([orientation=x]) ~ [swiping-position=end] {
+	right: 0;
+}
